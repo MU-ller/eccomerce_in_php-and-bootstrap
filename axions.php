@@ -33,7 +33,9 @@ $pdo->close();
                $stmt = $conn->prepare(
                    'SELECT * FROM products WHERE category_id = :catid  ORDER BY updated_at DESC'
                );
-               $stmt->execute(['catid' => $catid]);
+               $stmt->execute([
+                   'catid' => $catid,
+               ]);
                foreach ($stmt as $row) {
                    $image = !empty($row['photo'])
                        ? 'images/' . $row['photo']
@@ -53,6 +55,8 @@ $pdo->close();
                        $row['slug'] .
                        "'>" .
                        $row['name'] .
+                       '<br/>' .
+                       $row['amount'] .
                        "</a></h5>
 		       								</div>
 		       								<div class='box-footer'>
